@@ -8,12 +8,8 @@
     <meta name="description"
         content="Portfolio of Ricky Julian, a passionate Front-end Developer with 3 months of experience building responsive and elegant websites.">
 
-    <!-- Libraries -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.css" />
-
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/src/style.css">
 </head>
 
 <body>
@@ -41,7 +37,7 @@
         <div class="container hero-container">
             <div class="hero-image" data-aos="fade-right">
                 <div class="image-wrapper">
-                    <img src="Profile.png.jpeg" alt="Ricky Julian">
+                    <img src="/Profile.png.jpeg" alt="Ricky Julian">
                 </div>
             </div>
             <div class="hero-content">
@@ -102,8 +98,8 @@
                 <!-- Project 1 -->
                 <div class="project-card" data-aos="zoom-in">
                     <div class="project-img">
-                        <!-- Placeholder for image -->
-                        <div class="img-placeholder">Project One</div>
+                        <img src="/project1.png" alt="E-Commerce Interface"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-info">
                         <h3>E-Commerce Interface</h3>
@@ -118,7 +114,8 @@
                 <!-- Project 2 -->
                 <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="project-img">
-                        <div class="img-placeholder">Project Two</div>
+                        <img src="/project2.png" alt="Weather App"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-info">
                         <h3>Weather App</h3>
@@ -133,7 +130,8 @@
                 <!-- Project 3 -->
                 <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
                     <div class="project-img">
-                        <div class="img-placeholder">Project Three</div>
+                        <img src="/project3.png" alt="Personal Portfolio"
+                            style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <div class="project-info">
                         <h3>Personal Portfolio</h3>
@@ -173,8 +171,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="main.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 
 </html>
