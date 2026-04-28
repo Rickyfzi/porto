@@ -62,3 +62,38 @@ mobileMenuBtn.addEventListener('click', () => {
     icon.classList.toggle('ph-list');
     icon.classList.toggle('ph-x');
 });
+
+// Custom Cursor Particle
+const cursor = document.createElement('div');
+cursor.classList.add('cursor-particle');
+document.body.appendChild(cursor);
+
+let mouseX = 0;
+let mouseY = 0;
+let cursorX = 0;
+let cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateCursor() {
+    // Lower factor for a more "floaty" bubble feel
+    cursorX += (mouseX - cursorX) * 0.12;
+    cursorY += (mouseY - cursorY) * 0.12;
+    
+    cursor.style.left = `${cursorX}px`;
+    cursor.style.top = `${cursorY}px`;
+    
+    requestAnimationFrame(animateCursor);
+}
+
+animateCursor();
+
+// Add hover effect to interactive elements
+const interactiveElements = document.querySelectorAll('a, button, #theme-toggle, .project-card');
+interactiveElements.forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});
