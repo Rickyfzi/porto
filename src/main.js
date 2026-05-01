@@ -3,12 +3,13 @@ import 'aos/dist/aos.css';
 import '@phosphor-icons/web/bold';
 import '@phosphor-icons/web/regular';
 
-// Initialize AOS
+// Initialize AOS with optimized settings
 AOS.init({
-    duration: 800,
-    easing: 'ease-in-out',
+    duration: 1000,
+    easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
     once: true,
-    mirror: false
+    offset: 50,
+    disable: 'mobile' ? false : false // Keep enabled but smooth
 });
 
 // Theme Toggle Logic
@@ -55,12 +56,27 @@ window.addEventListener('scroll', () => {
 // Mobile Menu
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinks = document.querySelector('.nav-links');
+const navLinksArray = document.querySelectorAll('.nav-links a');
 
-mobileMenuBtn.addEventListener('click', () => {
+function toggleMenu() {
     navLinks.classList.toggle('active');
     const icon = mobileMenuBtn.querySelector('i');
     icon.classList.toggle('ph-list');
     icon.classList.toggle('ph-x');
+    
+    // Toggle body scroll
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+}
+
+mobileMenuBtn.addEventListener('click', toggleMenu);
+
+// Close menu when a link is clicked
+navLinksArray.forEach(link => {
+    link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            toggleMenu();
+        }
+    });
 });
 
 // Custom Cursor Particle
