@@ -97,3 +97,67 @@ interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
+
+// CV Management Logic
+const cvUpload = document.getElementById('cv-upload');
+const btnUpload = document.getElementById('btn-upload');
+const btnDownload = document.getElementById('btn-download');
+const cvStatus = document.getElementById('cv-status');
+
+function initCV() {
+    const savedCV = localStorage.getItem('user_cv');
+    const fileName = localStorage.getItem('user_cv_name');
+    
+    if (savedCV && fileName) {
+        cvStatus.textContent = `Ready: ${fileName}`;
+        btnDownload.style.display = 'flex';
+        btnUpload.innerHTML = '<i class="ph-bold ph-arrows-clockwise"></i> Replace';
+    }
+}
+
+btnUpload.addEventListener('click', () => cvUpload.click());
+
+cvUpload.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Check file size (limit to 4MB for localStorage safety)
+    if (file.size > 4 * 1024 * 1024) {
+        alert('File is too large. Please select a file under 4MB.');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        const base64String = event.target.result;
+        localStorage.setItem('user_cv', base64String);
+        localStorage.setItem('user_cv_name', file.name);
+        
+        cvStatus.textContent = `Ready: ${file.name}`;
+        btnDownload.style.display = 'flex';
+        btnUpload.innerHTML = '<i class="ph-bold ph-arrows-clockwise"></i> Replace';
+        
+        // Visual feedback
+        const card = document.querySelector('.cv-card');
+        card.style.borderColor = 'var(--accent-color)';
+        setTimeout(() => card.style.borderColor = '', 1000);
+    };
+    reader.readAsDataURL(file);
+});
+
+btnDownload.addEventListener('click', () => {
+    const base64String = localStorage.getItem('user_cv');
+    const fileName = localStorage.getItem('user_cv_name');
+    
+    if (base64String && fileName) {
+        const link = document.createElement('a');
+        link.href = base64String;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+});
+
+// Initialize on load
+initCV();
