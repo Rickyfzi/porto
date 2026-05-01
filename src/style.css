@@ -736,3 +736,10 @@ h1, h2, h3 {
         inset 0 0 15px var(--accent-glow),
         0 0 20px var(--accent-glow);
 }
+
+/* Hide cursor on touch devices / mobile */
+@media (max-width: 768px), (pointer: coarse) {
+    .cursor-particle {
+        display: none !important;
+    }
+}
