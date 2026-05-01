@@ -2,6 +2,16 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import '@phosphor-icons/web/bold';
 import '@phosphor-icons/web/regular';
+import LocomotiveScroll from 'locomotive-scroll';
+import { tsParticles } from "@tsparticles/engine";
+import { loadSlim } from "@tsparticles/slim";
+
+// Initialize Locomotive Scroll
+const scroll = new LocomotiveScroll({
+    el: document.querySelector('[data-scroll-container]'),
+    smooth: true,
+    multiplier: 1, // scroll speed
+});
 
 // Initialize AOS with optimized settings
 AOS.init({
@@ -11,6 +21,77 @@ AOS.init({
     offset: 50,
     disable: 'mobile' ? false : false // Keep enabled but smooth
 });
+
+// Initialize tsParticles
+(async () => {
+    await loadSlim(tsParticles);
+    
+    await tsParticles.load({
+        id: "tsparticles",
+        options: {
+            background: {
+                color: {
+                    value: "transparent",
+                },
+            },
+            fpsLimit: 60,
+            interactivity: {
+                events: {
+                    onHover: {
+                        enable: true,
+                        mode: "grab",
+                    },
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        links: {
+                            opacity: 0.5
+                        }
+                    },
+                },
+            },
+            particles: {
+                color: {
+                    value: "#3b82f6", // Accent color blue
+                },
+                links: {
+                    color: "#3b82f6",
+                    distance: 150,
+                    enable: true,
+                    opacity: 0.2,
+                    width: 1,
+                },
+                move: {
+                    direction: "none",
+                    enable: true,
+                    outModes: {
+                        default: "bounce",
+                    },
+                    random: false,
+                    speed: 1,
+                    straight: false,
+                },
+                number: {
+                    density: {
+                        enable: true,
+                    },
+                    value: 60, // Keep particle count moderate for performance
+                },
+                opacity: {
+                    value: 0.3,
+                },
+                shape: {
+                    type: "circle",
+                },
+                size: {
+                    value: { min: 1, max: 3 },
+                },
+            },
+            detectRetina: true,
+        },
+    });
+})();
 
 // Theme Toggle Logic
 const themeToggle = document.getElementById('theme-toggle');
