@@ -236,10 +236,29 @@ h1, h2, h3 {
     padding-top: 100px;
 }
 
+.hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(5rem, 20vw, 15rem);
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--accent-color);
+    opacity: 0.05;
+    white-space: nowrap;
+    z-index: -1;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+
 .hero-container {
     display: flex;
     align-items: center;
     gap: 5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-image {

@@ -10,9 +10,22 @@ import { loadSlim } from "@tsparticles/slim";
 const scroll = new LocomotiveScroll({
     el: document.querySelector('[data-scroll-container]'),
     smooth: true,
-    multiplier: 1, // Normal scroll speed
-    lerp: 0.1,    // Natural smoothness (not too floaty)
+    multiplier: 1,
+    lerp: 0.05, // Slightly more floaty for luxury feel
 });
+
+// Advanced: Skew effect on scroll velocity
+let speed = 0;
+let position = 0;
+let rounded = 0;
+
+function skewLoop() {
+    // This is a manual implementation of the skew effect seen in Locomotive demos
+    // Since v5 handles the scroll internally, we'll use a simpler approach if needed
+    // but for now let's focus on the data attributes which are the core of the demo look
+    requestAnimationFrame(skewLoop);
+}
+// skewLoop(); // Uncomment and refine if needed for deep customization
 
 // Initialize AOS with optimized settings
 AOS.init({
