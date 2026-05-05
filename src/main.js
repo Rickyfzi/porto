@@ -10,8 +10,8 @@ import { loadSlim } from "@tsparticles/slim";
 const scroll = new LocomotiveScroll({
     el: document.querySelector('[data-scroll-container]'),
     smooth: true,
-    multiplier: 0.9, // Slightly slower for better control
-    lerp: 0.07,     // Lower lerp for smoother, "floatier" movement
+    multiplier: 0.2, // Slightly slower for better control
+    lerp: 0.01,     // Lower lerp for smoother, "floatier" movement
 });
 
 // Initialize AOS with optimized settings
@@ -26,7 +26,7 @@ AOS.init({
 // Initialize tsParticles
 (async () => {
     await loadSlim(tsParticles);
-    
+
     await tsParticles.load({
         id: "tsparticles",
         options: {
@@ -109,7 +109,7 @@ if (savedTheme) {
 themeToggle.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
+
     body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     updateIcon(newTheme);
@@ -145,7 +145,7 @@ function toggleMenu() {
     const icon = mobileMenuBtn.querySelector('i');
     icon.classList.toggle('ph-list');
     icon.classList.toggle('ph-x');
-    
+
     // Toggle body scroll
     document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
 }
@@ -180,10 +180,10 @@ function animateCursor() {
     // Lower factor for a more "floaty" bubble feel
     cursorX += (mouseX - cursorX) * 0.12;
     cursorY += (mouseY - cursorY) * 0.12;
-    
+
     cursor.style.left = `${cursorX}px`;
     cursor.style.top = `${cursorY}px`;
-    
+
     requestAnimationFrame(animateCursor);
 }
 
@@ -205,7 +205,7 @@ const cvStatus = document.getElementById('cv-status');
 function initCV() {
     const savedCV = localStorage.getItem('user_cv');
     const fileName = localStorage.getItem('user_cv_name');
-    
+
     if (savedCV && fileName) {
         cvStatus.textContent = `Ready: ${fileName}`;
         btnDownload.style.display = 'flex';
@@ -230,11 +230,11 @@ cvUpload.addEventListener('change', (e) => {
         const base64String = event.target.result;
         localStorage.setItem('user_cv', base64String);
         localStorage.setItem('user_cv_name', file.name);
-        
+
         cvStatus.textContent = `Ready: ${file.name}`;
         btnDownload.style.display = 'flex';
         btnUpload.innerHTML = '<i class="ph-bold ph-arrows-clockwise"></i> Replace';
-        
+
         // Visual feedback
         const card = document.querySelector('.cv-card');
         card.style.borderColor = 'var(--accent-color)';
@@ -246,7 +246,7 @@ cvUpload.addEventListener('change', (e) => {
 btnDownload.addEventListener('click', () => {
     const base64String = localStorage.getItem('user_cv');
     const fileName = localStorage.getItem('user_cv_name');
-    
+
     if (base64String && fileName) {
         const link = document.createElement('a');
         link.href = base64String;
