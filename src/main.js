@@ -10,8 +10,8 @@ import { loadSlim } from "@tsparticles/slim";
 const scroll = new LocomotiveScroll({
     el: document.querySelector('[data-scroll-container]'),
     smooth: true,
-    multiplier: 0.2, // Slightly slower for better control
-    lerp: 0.01,     // Lower lerp for smoother, "floatier" movement
+    multiplier: 1, // Normal scroll speed
+    lerp: 0.1,    // Natural smoothness (not too floaty)
 });
 
 // Initialize AOS with optimized settings
