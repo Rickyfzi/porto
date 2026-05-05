@@ -101,7 +101,7 @@ button {
 
 /* Sections */
 section {
-    padding: 8rem 0;
+    padding: 12rem 0;
 }
 
 h1, h2, h3 {
@@ -111,8 +111,8 @@ h1, h2, h3 {
 }
 
 .section-title {
-    font-size: 3rem;
-    margin-bottom: 4rem;
+    font-size: 3.5rem;
+    margin-bottom: 6rem;
     text-align: center;
     position: relative;
     font-family: 'Playfair Display', serif;
@@ -838,7 +838,7 @@ h1, h2, h3 {
 
 /* Gallery Page Styles */
 .gallery {
-    padding: 8rem 0;
+    padding: 12rem 0;
 }
 
 .gallery-title {
@@ -849,6 +849,7 @@ h1, h2, h3 {
     white-space: nowrap;
     z-index: 0;
     pointer-events: none;
+    margin-bottom: 2rem;
 }
 
 .gallery-grid {
