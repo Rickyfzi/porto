@@ -54,10 +54,10 @@ AOS.init({
             },
             particles: {
                 color: {
-                    value: "#3b82f6", // Accent color blue
+                    value: "#666666", // Neutral grey
                 },
                 links: {
-                    color: "#3b82f6",
+                    color: "#666666",
                     distance: 150,
                     enable: true,
                     opacity: 0.2,
@@ -161,40 +161,6 @@ navLinksArray.forEach(link => {
     });
 });
 
-// Custom Cursor Particle
-const cursor = document.createElement('div');
-cursor.classList.add('cursor-particle');
-document.body.appendChild(cursor);
-
-let mouseX = 0;
-let mouseY = 0;
-let cursorX = 0;
-let cursorY = 0;
-
-document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
-
-function animateCursor() {
-    // Lower factor for a more "floaty" bubble feel
-    cursorX += (mouseX - cursorX) * 0.12;
-    cursorY += (mouseY - cursorY) * 0.12;
-
-    cursor.style.left = `${cursorX}px`;
-    cursor.style.top = `${cursorY}px`;
-
-    requestAnimationFrame(animateCursor);
-}
-
-animateCursor();
-
-// Add hover effect to interactive elements
-const interactiveElements = document.querySelectorAll('a, button, #theme-toggle, .project-card');
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
-});
 
 // CV Management Logic
 const cvUpload = document.getElementById('cv-upload');
