@@ -99,12 +99,10 @@ const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const body = document.body;
 
-// Check for saved theme
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    body.setAttribute('data-theme', savedTheme);
-    updateIcon(savedTheme);
-}
+// Check for saved theme, default to 'dark'
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', savedTheme);
+updateIcon(savedTheme);
 
 themeToggle.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
